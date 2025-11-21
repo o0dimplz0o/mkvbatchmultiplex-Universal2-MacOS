@@ -29,3 +29,5 @@ pip install --no-build-isolation \
 # 4. Build the app
 cd /path/to/your/mkvbatchmultiplex/clone
 pyinstaller --clean --noconfirm MKVBatchMultiplex.spec
+
+# The app will be in dist/MKVBatchMultiplex.app.

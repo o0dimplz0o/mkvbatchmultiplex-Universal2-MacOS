@@ -1,33 +1,62 @@
-# macOS Universal2 Build (Intel + Apple Silicon)
+# MKVBatchMultiplex — macOS Universal2 Build Guide
 
-This fork adds native macOS support for MKVBatchMultiplex.
+This fork provides a complete macOS-native Universal2 build of MKVBatchMultiplex.
+The resulting `.app` runs on both **Intel** and **Apple Silicon** (M1/M2/M3).
+
+---
 
 ## Requirements
 
-- macOS (Ventura or later recommended)
-- Python 3.12 universal2 from python.org
-- MKVToolNix (mkvmerge on PATH)
-- MediaInfo CLI (mediainfo on PATH)
+Install the following first:
 
-## Build steps
+### 1. Python Universal2 (must be the official python.org build)
+Download the “universal2“ installer:
+https://www.python.org/downloads/macos/
 
+### 2. MKVToolNix (for mkvmerge)
+Install from:
+https://mkvtoolnix.download/downloads.html#macos
+
+Verify:
 ```bash
-# 1. Create and activate a venv
+mkvmerge --version
+
+### 3. MediaInfo CLI
+Install from:
+https://mediaarea.net/en/MediaInfo/Download/Mac_OS
+
+Verify:
+```bash
+mediainfo --version
+
+## Build Instructions
+
+### 1. Create a clean environment
+```bash
 /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 \
   -m venv ~/mkvbm-universal-env
 
 source ~/mkvbm-universal-env/bin/activate
 python -m pip install --upgrade pip setuptools wheel
 
-# 2. Install dependencies
-pip install PySide6 pymediainfo natsort lxml babel pyinstaller
+### 2. Install build dependencies
+```bash
+pip install pyinstaller PySide6 pymediainfo natsort lxml babel
 
-# 3. Install patched vsutillib from this fork
+### 3. Install patched vsutillib (required for MacOS compatibility)
+```bash
 pip install --no-build-isolation \
   git+https://github.com/o0dimplz0o/vsutillib.git
 
-# 4. Build the app
-cd /path/to/your/mkvbatchmultiplex/clone
+### 4. Build the Application
+From the mkvbatchmultiplex source folder:
+```bash
+cd /path/to/mkvbatchmultiplex
 pyinstaller --clean --noconfirm MKVBatchMultiplex.spec
 
-# The app will be in dist/MKVBatchMultiplex.app.
+The compiled .app will appear in:
+```bash
+dist/MKVBatchMultiplex.app
+
+Move the app to your Applications folder (or other desired destination)
+

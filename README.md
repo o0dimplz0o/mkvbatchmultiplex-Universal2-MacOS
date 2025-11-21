@@ -1,3 +1,32 @@
+## macOS Support (Universal2)
+
+This fork adds full **native macOS support** for MKVBatchMultiplex, including:
+
+- **Universal2 binary** (works on both Intel & Apple Silicon M1/M2/M3)
+- Fully standalone `.app` bundle
+- Proper macOS icon
+- Dark mode compatibility
+- Patched `vsutillib` for QOutputTextWidget + QScreen issues
+- Graceful fallback when gettext translation files are missing
+
+A downloadable DMG installer is available here:
+
+👉 **[Download latest macOS release](../../releases/latest)**
+
+### Requirements
+
+To run the `.app`, you must have:
+
+- **MKVToolNix** installed (`mkvmerge` available on PATH)  
+- **MediaInfo CLI** installed (`mediainfo` available on PATH)
+
+You do *not* need Python installed — the app bundle includes everything.
+
+### Building from Source
+
+If you want to rebuild the macOS app yourself, see  
+`macos-build/README.md` for detailed instructions.
+
 # mkvbatchmultiplex: MKVMERGE batch multiplexing
 
 
@@ -150,34 +179,4 @@ forseeable future.
 If the the program generates any interest any further changes and
 additions will **also** depend on user base needs.
 
-# macOS Universal2 Build (Intel + Apple Silicon)
 
-This fork adds native macOS support for MKVBatchMultiplex.
-
-## Requirements
-
-- macOS (Ventura or later recommended)
-- Python 3.12 universal2 from python.org
-- MKVToolNix (mkvmerge on PATH)
-- MediaInfo CLI (mediainfo on PATH)
-
-## Build steps
-
-```bash
-# 1. Create and activate a venv
-/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 \
-  -m venv ~/mkvbm-universal-env
-
-source ~/mkvbm-universal-env/bin/activate
-python -m pip install --upgrade pip setuptools wheel
-
-# 2. Install dependencies
-pip install PySide6 pymediainfo natsort lxml babel pyinstaller
-
-# 3. Install patched vsutillib from your fork
-pip install --no-build-isolation \
-  git+https://github.com/o0dimplz0o/vsutillib.git
-
-# 4. Build the app
-cd /path/to/your/mkvbatchmultiplex/clone
-pyinstaller --clean --noconfirm MKVBatchMultiplex.spec

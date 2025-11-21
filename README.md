@@ -8,6 +8,7 @@ This fork adds full **native macOS support** for MKVBatchMultiplex, including:
 - Dark mode compatibility
 - Patched `vsutillib` for QOutputTextWidget + QScreen issues
 - Graceful fallback when gettext translation files are missing
+- **NOTE: Does NOT include the embedded MKVToolNix functionality. The icon will be there but it will not load.**
 
 A downloadable DMG installer is available here:
 
@@ -178,5 +179,6 @@ forseeable future.
 
 If the the program generates any interest any further changes and
 additions will **also** depend on user base needs.
+
 
 

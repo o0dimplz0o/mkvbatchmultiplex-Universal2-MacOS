@@ -20,7 +20,7 @@ https://mkvtoolnix.download/downloads.html#macos
 Verify:
 ```bash
 mkvmerge --version
-
+```
 ### 3. MediaInfo CLI
 Install from:
 https://mediaarea.net/en/MediaInfo/Download/Mac_OS
@@ -28,7 +28,7 @@ https://mediaarea.net/en/MediaInfo/Download/Mac_OS
 Verify:
 ```bash
 mediainfo --version
-
+```
 ## Build Instructions
 
 ### 1. Create a clean environment
@@ -38,25 +38,25 @@ mediainfo --version
 
 source ~/mkvbm-universal-env/bin/activate
 python -m pip install --upgrade pip setuptools wheel
-
+```
 ### 2. Install build dependencies
 ```bash
 pip install pyinstaller PySide6 pymediainfo natsort lxml babel
-
+```
 ### 3. Install patched vsutillib (required for MacOS compatibility)
 ```bash
 pip install --no-build-isolation \
   git+https://github.com/o0dimplz0o/vsutillib.git
-
+```
 ### 4. Build the Application
 From the mkvbatchmultiplex source folder:
 ```bash
 cd /path/to/mkvbatchmultiplex
 pyinstaller --clean --noconfirm MKVBatchMultiplex.spec
-
+```
 The compiled .app will appear in:
 ```bash
 dist/MKVBatchMultiplex.app
-
+```
 Move the app to your Applications folder (or other desired destination)
 
